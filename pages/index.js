@@ -1,4 +1,4 @@
-import GroupCardList from '../components/groupCardList';
+import GroupCardList from '../src/components/groupCardList';
 
 export default function Home() {
   return (

@@ -10,9 +10,9 @@ import {
 
 const titleTable = {
   '/': '홈',
-  '/group': '소모임',
+  '/group': '모임 검색',
   '/message': '메세지',
-  '/myPage': '마이페이지',
+  '/myPage': '마이 페이지',
 };
 
 const Layout = ({ children }) => {
@@ -29,6 +29,9 @@ const Layout = ({ children }) => {
     } else if (/\/group\/./.test(router.pathname)) {
       setShowLayout(true);
       setTitle('모집일정 상세');
+    } else if (/\/message\/./.test(router.pathname)) {
+      setShowLayout(true);
+      setTitle('채팅방');
     }
   }, [router]);
 
@@ -46,7 +49,7 @@ const Layout = ({ children }) => {
               onClick={() => router.push('/')}
             />
             <SearchOutlined
-              style={{ color: title === '소모임' ? '#3FA9FF' : null }}
+              style={{ color: title === '모임 검색' ? '#3FA9FF' : null }}
               onClick={() => router.push('/group')}
             />
             <MessageOutlined
@@ -54,7 +57,7 @@ const Layout = ({ children }) => {
               onClick={() => router.push('/message')}
             />
             <EllipsisOutlined
-              style={{ color: title === '마이페이지' ? '#3FA9FF' : null }}
+              style={{ color: title === '마이 페이지' ? '#3FA9FF' : null }}
               onClick={() => router.push('/myPage')}
             />
           </footer>

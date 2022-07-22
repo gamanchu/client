@@ -11,7 +11,7 @@ import {
   CardImage,
   CardTitle,
   CardInfoSubTitle,
-} from '../../src/components/style';
+} from './style';
 const { Meta } = Card;
 import { useRouter } from 'next/router';
 

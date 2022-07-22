@@ -1,8 +1,8 @@
 import 'antd/dist/antd.css';
 import '../styles/globals.scss';
-import Layout from '../components/layouts';
+import Layout from '../src/components/layouts';
 import { useEffect, useState } from 'react';
-import { listenUserState } from '../services/auth';
+import { listenUserState } from '../src/services/auth';
 import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }) {

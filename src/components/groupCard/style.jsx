@@ -1,16 +1,5 @@
 import styled from 'styled-components';
 
-// export const CardBottom = styled.div`
-//   padding: 5px 0;
-//   display: flex;
-//   align-items: center;
-// `;
-
-// export const DateText = styled.p`
-//   margin-bottom: 0;
-//   padding-left: 10px;
-// `;
-
 export const CardInfo = {
   display: 'flex',
   alignItems: 'center',

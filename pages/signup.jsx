@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-import { getCurrentUser, signUpUser } from '../services/auth';
-import { addDocInCollection } from '../services/db';
+import { getCurrentUser, signUpUser } from '../src/services/auth';
+import { addDocInCollection } from '../src/services/db';
 import Link from 'next/link';
 const SignUp = () => {
   const onFinish = async (values) => {
