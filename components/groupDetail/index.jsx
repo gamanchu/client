@@ -2,8 +2,6 @@ import React from 'react';
 import { Button, Card, Col, Row, Avatar, List } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 
-const { Meta } = Card;
-
 const data = [
   {
     title: 'Ant Design Title 1',
