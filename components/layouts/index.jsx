@@ -17,36 +17,48 @@ const titleTable = {
 
 const Layout = ({ children }) => {
   const [title, setTitle] = useState('');
+  const [showLayout, setShowLayout] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
+    setShowLayout(true);
     setTitle(titleTable[router.pathname]);
+
+    if (router.pathname === '/login' || router.pathname === '/signup') {
+      setShowLayout(false);
+    }
   }, [router]);
 
   return (
     <div className="gamanchu-wrapper">
-      <header className="gamanchu-header">
-        <PageHeader className="site-page-header" title={title} />
-      </header>
-      <div className="gamanchu-content">{children}</div>
-      <footer className="gamanchu-footer">
-        <HomeOutlined
-          style={{ color: title === '홈' ? '#3FA9FF' : null }}
-          onClick={() => router.push('/')}
-        />
-        <SearchOutlined
-          style={{ color: title === '소모임' ? '#3FA9FF' : null }}
-          onClick={() => router.push('/group')}
-        />
-        <MessageOutlined
-          style={{ color: title === '메세지' ? '#3FA9FF' : null }}
-          onClick={() => router.push('/message')}
-        />
-        <EllipsisOutlined
-          style={{ color: title === '마이페이지' ? '#3FA9FF' : null }}
-          onClick={() => router.push('/myPage')}
-        />
-      </footer>
+      {showLayout ? (
+        <>
+          <header className="gamanchu-header">
+            <PageHeader className="site-page-header" title={title} />
+          </header>
+          <div className="gamanchu-content">{children}</div>
+          <footer className="gamanchu-footer">
+            <HomeOutlined
+              style={{ color: title === '홈' ? '#3FA9FF' : null }}
+              onClick={() => router.push('/')}
+            />
+            <SearchOutlined
+              style={{ color: title === '소모임' ? '#3FA9FF' : null }}
+              onClick={() => router.push('/group')}
+            />
+            <MessageOutlined
+              style={{ color: title === '메세지' ? '#3FA9FF' : null }}
+              onClick={() => router.push('/message')}
+            />
+            <EllipsisOutlined
+              style={{ color: title === '마이페이지' ? '#3FA9FF' : null }}
+              onClick={() => router.push('/myPage')}
+            />
+          </footer>
+        </>
+      ) : (
+        <>{children}</>
+      )}
     </div>
   );
 };
