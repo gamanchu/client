@@ -1,9 +1,9 @@
-import GroupChatDetail from '../components/GroupChatDetail';
+import GroupCardList from '../components/groupCardList';
 
 export default function Home() {
   return (
     <div className={'home'}>
-      <GroupChatDetail />
+      <GroupCardList />
     </div>
   );
 }

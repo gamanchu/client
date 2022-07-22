@@ -26,6 +26,9 @@ const Layout = ({ children }) => {
 
     if (router.pathname === '/login' || router.pathname === '/signup') {
       setShowLayout(false);
+    } else if (/\/group\/./.test(router.pathname)) {
+      setShowLayout(true);
+      setTitle('모집일정 상세');
     }
   }, [router]);
 

@@ -69,7 +69,7 @@ function GroupDetail({}) {
                     <UserOutlined />
                   </Avatar>
                 }
-                title={<h3>{item.title}</h3>}
+                title={item.title}
               />
             </List.Item>
           )}
