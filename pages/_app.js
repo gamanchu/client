@@ -2,7 +2,7 @@ import 'antd/dist/antd.css';
 import '../styles/globals.scss';
 import Layout from '../src/components/layouts';
 import { useEffect, useState } from 'react';
-import { listenUserState } from '../src/services/auth';
+import { getCurrentUser, listenUserState } from '../src/services/auth';
 import { useRouter } from 'next/router';
 
 function MyApp({ Component, pageProps }) {

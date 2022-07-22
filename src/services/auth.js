@@ -4,6 +4,7 @@ import {
   deleteUser,
   signOut,
   onAuthStateChanged,
+  updateProfile,
 } from 'firebase/auth';
 import { auth } from './firebase';
 
@@ -50,6 +51,19 @@ export async function login(email, password) {
 
 export function getCurrentUser() {
   return auth.currentUser;
+}
+
+export async function updateUserProfile(displayName, photoURL) {
+  try {
+    await updateProfile(getCurrentUser(), {
+      displayName,
+      photoURL,
+    });
+    return { res: true, msg: '수정되었습니다' };
+  } catch (e) {
+    console.log(e);
+    return { res: false, msg: '수정중 에러가발생했습니다' };
+  }
 }
 
 export async function logOut() {
