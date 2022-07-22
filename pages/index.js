@@ -1,9 +1,9 @@
-import GroupCardList from '../src/components/groupCardList';
+import MyPageModify from '../src/components/myPageModify';
 
 export default function Home() {
   return (
     <div className={'home'}>
-      <GroupCardList />
+      <MyPageModify />
     </div>
   );
 }
