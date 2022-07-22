@@ -12,7 +12,7 @@ import {
   CardTitle,
   CardInfoSubTitle,
 } from './style';
-const { Meta } = Card;
+
 import { useRouter } from 'next/router';
 
 function GroupCard({ data }) {

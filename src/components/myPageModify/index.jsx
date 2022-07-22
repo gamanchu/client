@@ -1,14 +1,31 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Card, Col, Input, Row, Typography, Upload } from 'antd';
 import { CameraOutlined, UserOutlined } from '@ant-design/icons';
+import { getCurrentUser, updateUserProfile } from '../../services/auth';
+import { useRouter } from 'next/router';
 
-function MyPageModify({}) {
+function MyPageModify() {
+  const router = useRouter();
   const [file, setFile] = useState();
+
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
 
   function handleFileChange(e) {
     console.log(e.target.files);
     setFile(URL.createObjectURL(e.target.files[0]));
   }
+
+  useEffect(() => {
+    setUsername(getCurrentUser().displayName);
+    setEmail(getCurrentUser().email);
+  }, []);
+
+  const onSave = useCallback(() => {
+    updateUserProfile(username).then((res) => {
+      router.back();
+    });
+  }, [username]);
 
   return (
     <>
@@ -76,31 +93,28 @@ function MyPageModify({}) {
         </div>
         <div style={{ marginTop: '30px' }}>
           <p>이름</p>
-          <Input placeholder="홍길동" />
+          <Input
+            placeholder="홍길동"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
         </div>
         <div style={{ marginTop: '30px' }}>
           <p>이메일</p>
-          <Row>
-            <Col span="11">
-              <Input placeholder="홍길동" />
-            </Col>
-            <Col span="2" style={{ textAlign: 'center' }}>
-              <p>@</p>
-            </Col>
-            <Col span="11">
-              <Input placeholder="홍길동" />
-            </Col>
-          </Row>
-
+          <Input placeholder="email" value={email} disabled />
+        </div>
+        <div style={{ marginTop: '30px' }}>
           <Row style={{ marginTop: '60px' }}>
             <Col span="17">
-              <Button block type="primary">
-                가입하기
+              <Button block type="primary" onClick={onSave}>
+                저장하기
               </Button>
             </Col>
             <Col span="1"></Col>
             <Col span="6">
-              <Button block>취소</Button>
+              <Button block onClick={() => router.back()}>
+                취소
+              </Button>
             </Col>
           </Row>
         </div>
