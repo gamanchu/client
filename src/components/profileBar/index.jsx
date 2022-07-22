@@ -3,12 +3,10 @@ import { MdPersonOutline } from 'react-icons/md';
 import { GrLocation } from 'react-icons/gr';
 import { Col, Row } from 'antd';
 import Link from 'next/link';
+import { getCurrentUser } from '../../services/auth';
 
 // user 파라미터는 사용자의 데이터를 가진 json
-const ProfileBar = ({ user }) => {
-  useEffect(() => {
-    console.log(user);
-  }, []);
+const ProfileBar = () => {
   return (
     <div
       style={{
@@ -47,7 +45,7 @@ const ProfileBar = ({ user }) => {
                   marginRight: '10px',
                 }}
               >
-                {user == undefined ? '정성환' : user.name}
+                {getCurrentUser()?.displayName || '이름을 업데이트해보세요!'}
               </span>
               <span
                 style={{
@@ -55,7 +53,7 @@ const ProfileBar = ({ user }) => {
                   opacity: '0.7',
                 }}
               >
-                {user == undefined ? '1998.5.18' : user.birthdate}
+                {getCurrentUser()?.email}
               </span>
             </div>
           </Row>
@@ -72,21 +70,11 @@ const ProfileBar = ({ user }) => {
                 fontSize: '0.9em',
               }}
             >
-              {user == undefined ? '대구광역시' : user.location}
+              대한민국
             </span>
           </Row>
         </Col>
       </Row>
-
-      <Link href={`/profile/${11}`}>
-        <a
-          style={{
-            fontSize: '0.8em',
-          }}
-        >
-          수정
-        </a>
-      </Link>
     </div>
   );
 };

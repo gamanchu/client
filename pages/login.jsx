@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-import { login } from '../services/auth';
+import { login } from '../src/services/auth';
 import Link from 'next/link';
 
 const LogIn = () => {

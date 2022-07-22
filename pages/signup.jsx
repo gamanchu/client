@@ -1,7 +1,11 @@
 import React from 'react';
 import { Button, Form, Input } from 'antd';
-import { getCurrentUser, signUpUser } from '../services/auth';
-import { addDocInCollection } from '../services/db';
+import {
+  getCurrentUser,
+  signUpUser,
+  updateUserProfile,
+} from '../src/services/auth';
+import { addDocInCollection } from '../src/services/db';
 import Link from 'next/link';
 const SignUp = () => {
   const onFinish = async (values) => {
@@ -23,12 +27,11 @@ const SignUp = () => {
         uid: result.user.uid,
         createAt: new Date(),
       });
-      alert(result.message);
+      await updateUserProfile(name, '');
     } else {
       return alert(result.message);
     }
   };
-  console.log(getCurrentUser());
   return (
     <div style={{ padding: '2em', maxWidth: '700px', margin: 'auto' }}>
       <h1 style={{ textAlign: 'center', fontWeight: 'bold' }}>회원가입</h1>

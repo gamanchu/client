@@ -11,8 +11,8 @@ import {
   CardImage,
   CardTitle,
   CardInfoSubTitle,
-} from '../../src/components/style';
-const { Meta } = Card;
+} from './style';
+
 import { useRouter } from 'next/router';
 
 function GroupCard({ data }) {

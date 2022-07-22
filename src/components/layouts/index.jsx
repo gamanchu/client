@@ -6,13 +6,14 @@ import {
   SearchOutlined,
   EllipsisOutlined,
   MessageOutlined,
+  BellOutlined,
 } from '@ant-design/icons';
 
 const titleTable = {
   '/': '홈',
-  '/group': '소모임',
+  '/group': '모임 검색',
   '/message': '메세지',
-  '/myPage': '마이페이지',
+  '/myPage': '마이 페이지',
 };
 
 const Layout = ({ children }) => {
@@ -29,6 +30,9 @@ const Layout = ({ children }) => {
     } else if (/\/group\/./.test(router.pathname)) {
       setShowLayout(true);
       setTitle('모집일정 상세');
+    } else if (/\/message\/./.test(router.pathname)) {
+      setShowLayout(true);
+      setTitle('채팅방');
     }
   }, [router]);
 
@@ -37,7 +41,19 @@ const Layout = ({ children }) => {
       {showLayout ? (
         <>
           <header className="gamanchu-header">
-            <PageHeader className="site-page-header" title={title} />
+            <PageHeader
+              className="site-page-header"
+              title={title}
+              extra={[
+                <BellOutlined
+                  key={1}
+                  style={{
+                    fontSize: '1.5rem',
+                    marginTop: '5px',
+                  }}
+                />,
+              ]}
+            />
           </header>
           <div className="gamanchu-content">{children}</div>
           <footer className="gamanchu-footer">
@@ -46,7 +62,7 @@ const Layout = ({ children }) => {
               onClick={() => router.push('/')}
             />
             <SearchOutlined
-              style={{ color: title === '소모임' ? '#3FA9FF' : null }}
+              style={{ color: title === '모임 검색' ? '#3FA9FF' : null }}
               onClick={() => router.push('/group')}
             />
             <MessageOutlined
@@ -54,7 +70,7 @@ const Layout = ({ children }) => {
               onClick={() => router.push('/message')}
             />
             <EllipsisOutlined
-              style={{ color: title === '마이페이지' ? '#3FA9FF' : null }}
+              style={{ color: title === '마이 페이지' ? '#3FA9FF' : null }}
               onClick={() => router.push('/myPage')}
             />
           </footer>
