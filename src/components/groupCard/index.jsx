@@ -21,8 +21,16 @@ function GroupCard({ data }) {
     <>
       <Card
         bordered={false}
-        bodyStyle={{ padding: '0', maxHeight: '110px' }}
-        style={{ marginBottom: '25px', maxWidth: '400px', margin: 'auto' }}
+        bodyStyle={{ padding: '0px', maxHeight: '130px' }}
+        style={{
+          marginBottom: '25px',
+          maxWidth: '400px',
+          margin: '0 auto',
+          marginTop: '10px',
+          borderRadius: '10px',
+          overflow: 'hidden',
+          boxShadow: '4px 3px 10px #0000000f',
+        }}
         onClick={() => router.push(`/group/${data.id}`)}
       >
         <Row>
@@ -45,7 +53,7 @@ function GroupCard({ data }) {
               </div>
             </div>
           </Col>
-          <Col span={10} style={{ padding: '10px 0 10px 10px' }}>
+          <Col span={10} style={{ padding: '0px' }}>
             <img style={CardImage} src={data.image} />
           </Col>
         </Row>

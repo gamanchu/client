@@ -18,8 +18,9 @@ export const CardInfoText = {
 
 export const CardImage = {
   width: '100%',
+  height: '100%',
   objectFit: 'cover',
-  maxHeight: '130px',
+  maxHeight: '150px',
 };
 
 export const CardTitle = {
