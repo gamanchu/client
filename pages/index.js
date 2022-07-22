@@ -1,9 +1,11 @@
 import GroupCardList from '../src/components/groupCardList';
 import CagetoryList from '../src/components/categoryList';
+import OpenMeetingBtn from '../src/components/openMettingBtn';
 
 export default function Home() {
   return (
     <div className={'home'}>
+      <OpenMeetingBtn />
       <CagetoryList />
       <h2
         style={{

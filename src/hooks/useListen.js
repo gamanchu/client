@@ -16,7 +16,7 @@ export function useListen(targetCollection) {
 
       return () => unsubscribe();
     });
-  }, []);
+  }, [targetCollection]);
 
   return [state];
 }

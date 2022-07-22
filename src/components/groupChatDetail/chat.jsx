@@ -13,7 +13,7 @@ function GroupChat({ avatar, content, date }) {
     } else {
       setisAvatar(true);
     }
-  }, []);
+  }, [avatar]);
 
   return (
     <div style={{ marginBottom: '10px' }}>

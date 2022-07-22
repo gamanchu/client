@@ -1,22 +1,84 @@
-import React, { useState} from 'react';
-import { Input,Select,Button,Form } from 'antd';
+import React, { useState } from 'react';
+import { Input, Select, Button, Form, DatePicker } from 'antd';
+import dayjs from 'dayjs';
+import UploadImage from '../UploadImage';
+import {
+  getURLFromFullPath,
+  removeFileFromStorage,
+  uploadFile,
+} from '../../services/storage';
+import { addDocInCollection, modifyDoc } from '../../services/db';
+import { useRouter } from 'next/router';
 
 const { Option } = Select;
 const { TextArea } = Input;
 
-
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
-const categories = ['운동/스포츠', '외국/언어', '문화/공연','악기','봉사','댄스','사교','자동차','반려동물','여행','요리','독서','사진','게임'];
-const location = ["서울","부산","대구","울산","대전","광주"]
+const categories = [
+  '운동/스포츠',
+  '외국/언어',
+  '문화/공연',
+  '악기',
+  '봉사',
+  '댄스',
+  '사교',
+  '자동차',
+  '반려동물',
+  '여행',
+  '요리',
+  '독서',
+  '사진',
+  '게임',
+];
+const location = ['서울', '부산', '대구', '울산', '대전', '광주'];
 const OpenMetting = () => {
-  const [room,setRoom]=useState();
-  
-const onFinish = (values) => {
-  console.log('Success:', values);
-};
-    return (
+  const [room, setRoom] = useState();
+  const [saveImage, setSaveImage] = useState('');
+  const router = useRouter();
+
+  const onFinish = async (values) => {
+    const date = dayjs(values.dueDate._d).format('YYYY-MM-DD hh:mm');
+    const { category, count, location, meetingGoal, meetingName } = values;
+
+    const res = await addDocInCollection('group', {
+      meetingName,
+      meetingGoal,
+      category,
+      count,
+      location,
+      createAt: date,
+      imageURL: saveImage,
+    });
+    alert('생성되었습니다!');
+    router.back();
+  };
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
+
+  const onUpload = (file) => {
+    uploadFile(`group/${file.name}`, file).then((snapshot) => {
+      console.log(snapshot);
+      getURLFromFullPath(snapshot.metadata.fullPath).then((path) => {
+        console.log(path);
+        setSaveImage(path);
+      });
+    });
+  };
+
+  const onRemove = (file) => {
+    const { name } = file;
+    removeFileFromStorage(`group/${file.name}`);
+    console.log(file);
+  };
+
+  return (
+    <>
+      <UploadImage onUpload={onUpload} onRemove={onRemove} />
       <Form onFinish={onFinish}>
         <Form.Item
           name="meetingName"
@@ -69,7 +131,17 @@ const onFinish = (values) => {
             ))}
           </Select>
         </Form.Item>
-
+        <Form.Item
+          name="dueDate"
+          label="모집마감일자"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <DatePicker onChange={onChange} />
+        </Form.Item>
         <Form.Item
           name="category"
           label="카테고리선택"
@@ -116,18 +188,14 @@ const onFinish = (values) => {
           </Select>
         </Form.Item>
 
-        <Form.Item
-          wrapperCol={{
-            offset: 11,
-            span: 16,
-          }}
-        >
+        <Form.Item>
           <Button type="primary" htmlType="submit">
             모임 만들기
           </Button>
         </Form.Item>
       </Form>
-    );
+    </>
+  );
 };
 
 export default OpenMetting;

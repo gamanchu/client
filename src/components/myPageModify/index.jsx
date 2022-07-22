@@ -25,7 +25,7 @@ function MyPageModify() {
     updateUserProfile(username).then((res) => {
       router.back();
     });
-  }, [username]);
+  }, [username, router]);
 
   return (
     <>

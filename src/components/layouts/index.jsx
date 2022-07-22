@@ -14,6 +14,7 @@ const titleTable = {
   '/group': '모임 검색',
   '/message': '메세지',
   '/myPage': '마이 페이지',
+  '/create': '모임 생성',
 };
 
 const Layout = ({ children }) => {

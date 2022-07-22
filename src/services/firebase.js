@@ -15,4 +15,4 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-export const storage = getStorage(app, process.env.REACT_APP_BUCKET_URL);
+export const storage = getStorage(app, 'gs://gamanchu-b3e34.appspot.com');
