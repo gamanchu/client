@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Group = () => {
+const Index = () => {
   return <div>group page</div>;
 };
 
-export default Group;
+export default Index;
