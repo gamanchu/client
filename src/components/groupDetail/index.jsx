@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Button, Card, Col, Row, Avatar, List } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-
+import { useGroup } from '../../hooks/useGroup';
+import { useRouter } from 'next/router';
+import { modifyDoc } from '../../services/db';
+import { arrayUnion } from 'firebase/firestore';
+import { getCurrentUser } from '../../services/auth';
 const { Meta } = Card;
 
-const data = [
-  {
-    title: 'Ant Design Title 1',
-  },
-  {
-    title: 'Ant Design Title 2',
-  },
-  {
-    title: 'Ant Design Title 3',
-  },
-  {
-    title: 'Ant Design Title 4',
-  },
-];
+function GroupDetail() {
+  const router = useRouter();
+  const { id } = router.query;
+  console.log(router.query);
+  const { data, refetch } = useGroup(id);
 
-function GroupDetail({}) {
+  const onApply = useCallback(async () => {
+    await modifyDoc('group', id, {
+      apply: arrayUnion({
+        id: getCurrentUser().uid,
+        name: getCurrentUser().displayName,
+        photoURL: getCurrentUser().photoURL || '',
+      }),
+    });
+
+    alert('신청되었습니다');
+    await refetch();
+  }, [id]);
+
+  if (!data) {
+    return <div>loading...</div>;
+  }
   return (
     <>
       <Card
@@ -28,48 +38,39 @@ function GroupDetail({}) {
           <img
             style={{ maxHeight: '250px', objectFit: 'cover' }}
             alt="example"
-            src="https://img.samsungsemiconstory.com/kr/wp-content/uploads/2021/06/running_trend_20170524_02.jpg"
+            src={data.imageURL}
           />
         }
       >
-        <h2>퇴근 후 러닝 함께 해요~~</h2>
-        <p>
-          {`Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only
-            five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged.`}
-        </p>
+        <h2>{data.meetingName}</h2>
+        <p>{data.meetingGoal}</p>
         <div>
           <Row>
             <Col span={6}>
               <h4>현재 인원</h4>
-              <p>0 / 5</p>
+              <p>
+                {data.apply.length || 0} / {data.max}
+              </p>
             </Col>
             <Col span={12}>
               <h4>모임 날짜</h4>
-              <p>2022-08-12</p>
+              <p>{data.dueDate}</p>
             </Col>
           </Row>
         </div>
-        <Button block type="primary">
+        <Button block type="primary" onClick={onApply}>
           신청하기
         </Button>
       </Card>
-      <Card title="현재 인원 (0명)" bordered={false}>
+      <Card title={`현재 인원 (${data.apply.length || 0}명)`} bordered={false}>
         <List
           itemLayout="horizontal"
-          dataSource={data}
+          dataSource={data.apply || []}
           renderItem={(item) => (
             <List.Item>
               <List.Item.Meta
-                avatar={
-                  <Avatar>
-                    <UserOutlined />
-                  </Avatar>
-                }
-                title={item.title}
+                avatar={<Avatar src={item.photoURL ? item.photoURL : null} />}
+                title={item.name}
               />
             </List.Item>
           )}

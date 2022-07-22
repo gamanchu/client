@@ -36,19 +36,19 @@ const OpenMetting = () => {
   const router = useRouter();
 
   const onFinish = async (values) => {
-    const date = dayjs(values.dueDate._d).format('YYYY-MM-DD hh:mm');
+    const date = dayjs(values.dueDate._d).format('YYYY-MM-DD');
     const { category, count, location, meetingGoal, meetingName } = values;
 
-    const res = await addDocInCollection('group', {
+    await addDocInCollection('group', {
       meetingName,
       meetingGoal,
       category,
-      count,
+      max: parseInt(count),
+      apply: [],
       location,
-      createAt: date,
+      dueDate: date,
       imageURL: saveImage,
     });
-    alert('생성되었습니다!');
     router.back();
   };
 
@@ -77,7 +77,7 @@ const OpenMetting = () => {
   };
 
   return (
-    <>
+    <div style={{ marginTop: '1rem' }}>
       <UploadImage onUpload={onUpload} onRemove={onRemove} />
       <Form onFinish={onFinish}>
         <Form.Item
@@ -194,7 +194,7 @@ const OpenMetting = () => {
           </Button>
         </Form.Item>
       </Form>
-    </>
+    </div>
   );
 };
 

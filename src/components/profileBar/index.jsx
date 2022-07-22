@@ -7,6 +7,7 @@ import { getCurrentUser } from '../../services/auth';
 
 // user 파라미터는 사용자의 데이터를 가진 json
 const ProfileBar = () => {
+  console.log(getCurrentUser());
   return (
     <div
       style={{
@@ -17,19 +18,17 @@ const ProfileBar = () => {
       }}
     >
       <Row>
-        <Col
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: 'gray',
-            borderRadius: '25px',
-            marginRight: '10px',
-            width: '48px',
-            height: '48px',
-          }}
-        >
-          <MdPersonOutline size={30} />
+        <Col>
+          <img
+            src={getCurrentUser()?.photoURL}
+            alt=""
+            style={{
+              width: '50px',
+              height: '50px',
+              marginRight: '5px',
+              borderRadius: '5px',
+            }}
+          />
         </Col>
         <Col>
           <Row

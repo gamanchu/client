@@ -53,7 +53,7 @@ export function getCurrentUser() {
   return auth.currentUser;
 }
 
-export async function updateUserProfile(displayName, photoURL = '') {
+export async function updateUserProfile(displayName, photoURL) {
   try {
     await updateProfile(getCurrentUser(), {
       displayName,

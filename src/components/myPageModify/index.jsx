@@ -3,20 +3,30 @@ import { Button, Card, Col, Input, Row, Typography, Upload } from 'antd';
 import { CameraOutlined, UserOutlined } from '@ant-design/icons';
 import { getCurrentUser, updateUserProfile } from '../../services/auth';
 import { useRouter } from 'next/router';
+import { getURLFromFullPath, uploadFile } from '../../services/storage';
 
 function MyPageModify() {
   const router = useRouter();
-  const [file, setFile] = useState();
-
+  const [file, setFile] = useState(getCurrentUser()?.photoURL);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
 
   function handleFileChange(e) {
-    console.log(e.target.files);
-    setFile(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    setFile(URL.createObjectURL(file));
+    uploadFile(`user/${file.name}`, file).then((snapshot) => {
+      console.log(snapshot);
+      getURLFromFullPath(snapshot.metadata.fullPath).then((path) => {
+        console.log(path);
+        updateUserProfile(username, path);
+      });
+    });
   }
 
   useEffect(() => {
+    if (!getCurrentUser()?.displayName || !getCurrentUser()?.photoURL) {
+      return;
+    }
     setUsername(getCurrentUser().displayName);
     setEmail(getCurrentUser().email);
   }, []);
@@ -45,7 +55,7 @@ function MyPageModify() {
                 filter: 'brightness(0.7)',
                 objectFit: 'cover',
               }}
-              src={file}
+              src={file || getCurrentUser().photoURL}
             />
           ) : (
             <div

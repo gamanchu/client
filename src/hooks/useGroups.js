@@ -8,7 +8,7 @@ export function useGroups() {
   }, []);
 
   const refetch = () => {
-    getAllDocs('groups').then((groups) => {
+    getAllDocs('group').then((groups) => {
       setData(groups);
     });
   };

@@ -8,7 +8,7 @@ export function useGroup(docId) {
   }, [refetch]);
 
   const refetch = useCallback(async () => {
-    const doc = await getOneDoc('groups', docId);
+    const doc = await getOneDoc('group', docId);
     setData(doc);
   }, [docId]);
 

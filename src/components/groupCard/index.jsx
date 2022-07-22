@@ -27,7 +27,7 @@ function GroupCard({ data }) {
       >
         <Row>
           <Col span={14} style={{ padding: '10px 0 10px 10px' }}>
-            <h3 style={CardTitle}>{data.title}</h3>
+            <h3 style={CardTitle}>{data.meetingName}</h3>
             <div style={CardInfoSubTitle}>
               <CompassOutlined />
               <p style={CardInfoText}>{data.location}</p>
@@ -35,18 +35,18 @@ function GroupCard({ data }) {
             <div style={{ padding: '5px 0 0 0' }}>
               <div style={CardInfo}>
                 <CalendarOutlined />
-                <p style={CardInfoText}>{data.date}</p>
+                <p style={CardInfoText}>{data.dueDate}</p>
               </div>
               <div style={CardInfo}>
                 <UserOutlined />
                 <p style={CardInfoText}>
-                  모집인원 {data.current} / {data.limit}
+                  모집인원 {data?.apply?.length || 0} / {data.max}
                 </p>
               </div>
             </div>
           </Col>
           <Col span={10} style={{ padding: '10px 0 10px 10px' }}>
-            <img style={CardImage} src={data.image} />
+            <img style={CardImage} src={data.imageURL} />
           </Col>
         </Row>
       </Card>
