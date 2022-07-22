@@ -1,0 +1,34 @@
+$headerHeight:68px;
+
+.gamanchu-wrapper{
+}
+.gamanchu-header{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $headerHeight;
+  z-index: 1000;
+  background-color: #fff;
+}
+.gamanchu-content{
+  height: 300vh;
+  padding: $headerHeight 0 ;
+}
+.gamanchu-footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: $headerHeight;
+  z-index: 1000;
+  background-color: #fff;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 2rem;
+
+  & span{
+    cursor: pointer;
+  }
+}
+
