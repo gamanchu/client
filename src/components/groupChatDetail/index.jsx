@@ -8,7 +8,7 @@ function GroupChatDetail({}) {
   const onSearch = (value) => console.log(value);
   return (
     <>
-      <div style={{ padding: '20px' }}>
+      <div style={{ padding: '20px 5px' }}>
         <div>
           <GroupChat avatar={'1'} date={'07.23 18:30'} content={'Hello'} />
           <MyGroupChat date={'07.23 18:30'} content={'Where R U?'} />
@@ -34,6 +34,7 @@ function GroupChatDetail({}) {
         style={{
           padding: '10px 5px',
           position: 'fixed',
+          left: '0',
           bottom: '68px',
           width: '100%',
           backgroundColor: '#fff',
