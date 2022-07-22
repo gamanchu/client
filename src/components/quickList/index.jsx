@@ -1,8 +1,12 @@
 import React, { memo } from 'react';
 import { AiOutlineRight } from 'react-icons/ai';
 import { QuickBox } from './style';
+import { logOut } from '../../services/auth';
 
 const QuickList = () => {
+  const onLogOut = () => {
+    logOut();
+  };
   return (
     <div>
       <QuickBox>
@@ -14,7 +18,7 @@ const QuickList = () => {
         <AiOutlineRight />
       </QuickBox>
 
-      <QuickBox>
+      <QuickBox onClick={onLogOut}>
         <h3>로그아웃</h3>
         <AiOutlineRight />
       </QuickBox>

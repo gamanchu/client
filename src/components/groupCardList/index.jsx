@@ -45,7 +45,7 @@ const GroupCardList = () => {
     },
   ]);
   return (
-    <div>
+    <div style={{ marginTop: '10px' }}>
       {data.map((d) => (
         <GroupCard key={d.id} data={d} />
       ))}

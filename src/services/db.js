@@ -7,6 +7,10 @@ import {
   doc,
   getDocs,
   getDoc,
+  onSnapshot,
+  query,
+  where,
+  orderBy,
 } from 'firebase/firestore';
 
 export async function addDocInCollection(targetCollection, data) {
@@ -33,6 +37,10 @@ export async function getAllDocs(targetCollection) {
     result.push({ id: doc.id, ...doc.data() });
   });
   return result;
+}
+
+export function createFirebaseQuery(targetCollection) {
+  return query(collection(db, targetCollection), orderBy('createAt'));
 }
 
 export async function modifyDoc(collection, docId, data) {
