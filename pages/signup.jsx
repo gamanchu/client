@@ -28,7 +28,6 @@ const SignUp = () => {
         createAt: new Date(),
       });
       await updateUserProfile(name, '');
-      alert(result.message);
     } else {
       return alert(result.message);
     }

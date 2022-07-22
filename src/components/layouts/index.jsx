@@ -6,6 +6,7 @@ import {
   SearchOutlined,
   EllipsisOutlined,
   MessageOutlined,
+  BellOutlined,
 } from '@ant-design/icons';
 
 const titleTable = {
@@ -40,7 +41,19 @@ const Layout = ({ children }) => {
       {showLayout ? (
         <>
           <header className="gamanchu-header">
-            <PageHeader className="site-page-header" title={title} />
+            <PageHeader
+              className="site-page-header"
+              title={title}
+              extra={[
+                <BellOutlined
+                  key={1}
+                  style={{
+                    fontSize: '1.5rem',
+                    marginTop: '5px',
+                  }}
+                />,
+              ]}
+            />
           </header>
           <div className="gamanchu-content">{children}</div>
           <footer className="gamanchu-footer">
