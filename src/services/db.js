@@ -18,6 +18,10 @@ export async function addDocInCollection(targetCollection, data) {
   return docRef;
 }
 
+export function getDocRef(collection, docId) {
+  return doc(db, collection, docId);
+}
+
 export async function getOneDoc(collection, docId) {
   const docRef = doc(db, collection, docId);
   const docSnap = await getDoc(docRef);

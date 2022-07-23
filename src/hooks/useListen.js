@@ -1,22 +1,19 @@
 import { onSnapshot } from 'firebase/firestore';
 import { useEffect, useRef, useState } from 'react';
-import { createFirebaseQuery } from '../services/db';
+import { createFirebaseQuery, getDocRef } from '../services/db';
 
-export function useListen(targetCollection) {
+export function useListen(targetCollection, docId) {
   const [state, setState] = useState([]);
 
   useEffect(() => {
-    const q = createFirebaseQuery(targetCollection);
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const result = [];
-      querySnapshot.forEach((doc) => {
-        result.push({ docId: doc.id, ...doc.data() });
-      });
-      setState(result);
+    // const q = createFirebaseQuery(targetCollection);
+    const q = getDocRef(targetCollection, docId);
+    const unsubscribe = onSnapshot(q, (doc) => {
+      setState({ docId: doc.id, ...doc.data() });
 
       return () => unsubscribe();
     });
-  }, [targetCollection]);
+  }, [targetCollection, docId]);
 
   return [state];
 }
