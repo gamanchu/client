@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 
 import { ChatBox } from './style';
 
-function GroupChat({ avatar, content, date }) {
+function GroupChat({ name, avatar, content, date }) {
   const [isAvatar, setisAvatar] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ function GroupChat({ avatar, content, date }) {
       <div>
         {isAvatar ? (
           <Typography style={{ display: 'block', marginBottom: '5px' }}>
-            말하는 감자
+            {name}
           </Typography>
         ) : (
           ''

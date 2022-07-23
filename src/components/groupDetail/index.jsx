@@ -23,7 +23,6 @@ function GroupDetail() {
       }),
     });
 
-    alert('신청되었습니다');
     await refetch();
   }, [id]);
 

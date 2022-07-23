@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Col, Input, Row } from 'antd';
+import { Avatar, Button, Col, Input, Row } from 'antd';
 import { ArrowUpOutlined } from '@ant-design/icons';
 import GroupChat from './chat';
 import MyGroupChat from './myChat';
@@ -31,7 +31,6 @@ function GroupChatDetail({}) {
   const [data] = useListen('group', id);
   const [myChat, setMyChat] = useState('');
   console.log(data.msg);
-
   const onSubmitChat = () => {
     modifyDoc('group', id, {
       msg: arrayUnion({
@@ -56,7 +55,8 @@ function GroupChatDetail({}) {
               return (
                 <GroupChat
                   key={d.id}
-                  avatar={d?.photoURL || ''}
+                  name={d.displayname}
+                  avatar={<Avatar src={d?.photoURL || ''} />}
                   date={d.createAt}
                   content={d.text}
                 />
