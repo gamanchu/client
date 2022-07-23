@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className={'home'}>
       <OpenMeetingBtn />
-      <CagetoryList />
+      {/*<CagetoryList />*/}
       <h2
         style={{
           paddingLeft: '14px',
