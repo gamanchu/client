@@ -22,11 +22,6 @@ const QuickList = () => {
         <h3>회원정보수정</h3>
         <AiOutlineRight />
       </QuickBox>
-      <QuickBox>
-        <h3>내 모임</h3>
-        <AiOutlineRight />
-      </QuickBox>
-
       <QuickBox onClick={onLogOut}>
         <h3>로그아웃</h3>
         <AiOutlineRight />

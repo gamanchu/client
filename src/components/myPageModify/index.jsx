@@ -8,7 +8,7 @@ import { getURLFromFullPath, uploadFile } from '../../services/storage';
 function MyPageModify() {
   const router = useRouter();
   const [file, setFile] = useState(getCurrentUser()?.photoURL);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState(getCurrentUser()?.displayName);
   const [email, setEmail] = useState('');
 
   function handleFileChange(e) {
