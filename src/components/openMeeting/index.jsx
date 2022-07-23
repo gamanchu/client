@@ -64,7 +64,6 @@ const OpenMetting = () => {
     uploadFile(`group/${file.name}`, file).then((snapshot) => {
       console.log(snapshot);
       getURLFromFullPath(snapshot.metadata.fullPath).then((path) => {
-        console.log(path);
         setSaveImage(path);
       });
     });
@@ -73,7 +72,6 @@ const OpenMetting = () => {
   const onRemove = (file) => {
     const { name } = file;
     removeFileFromStorage(`group/${file.name}`);
-    console.log(file);
   };
 
   return (

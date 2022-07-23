@@ -12,7 +12,6 @@ const Index = () => {
 
   const onClick = () => {
     setIsEnter(true);
-    console.log(word);
   };
 
   return (

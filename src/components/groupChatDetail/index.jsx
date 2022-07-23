@@ -30,7 +30,6 @@ function GroupChatDetail({}) {
   const { id } = router.query;
   const [data] = useListen('group', id);
   const [myChat, setMyChat] = useState('');
-  console.log(data.msg);
   const onSubmitChat = () => {
     modifyDoc('group', id, {
       msg: arrayUnion({

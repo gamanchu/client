@@ -41,8 +41,6 @@ function GroupChatList({}) {
     });
   }, [data]);
 
-  console.log(chats);
-
   // apply: (2) [{…}, {…}]
   // category: "여행"
   // dueDate: "2022-07-26"

@@ -11,7 +11,6 @@ const { Meta } = Card;
 function GroupDetail() {
   const router = useRouter();
   const { id } = router.query;
-  console.log(router.query);
   const { data, refetch } = useGroup(id);
 
   const onApply = useCallback(async () => {

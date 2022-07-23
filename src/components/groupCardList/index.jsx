@@ -6,7 +6,7 @@ const GroupCardList = ({ isEnter, word }) => {
   const { data, refetch, setData } = useGroups();
 
   useEffect(() => {
-    if (word.length === 0) {
+    if (word && word.length === 0) {
       refetch();
     }
 

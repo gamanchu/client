@@ -15,9 +15,7 @@ function MyPageModify() {
     const file = e.target.files[0];
     setFile(URL.createObjectURL(file));
     uploadFile(`user/${file.name}`, file).then((snapshot) => {
-      console.log(snapshot);
       getURLFromFullPath(snapshot.metadata.fullPath).then((path) => {
-        console.log(path);
         updateUserProfile(username, path);
       });
     });
