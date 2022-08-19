@@ -60,19 +60,19 @@ const Layout = ({ children }) => {
           <footer className="gamanchu-footer">
             <HomeOutlined
               style={{ color: title === '홈' ? '#3FA9FF' : null }}
-              onClick={() => router.push('/')}
+              onClick={() => router.replace('/')}
             />
             <SearchOutlined
               style={{ color: title === '모임 검색' ? '#3FA9FF' : null }}
-              onClick={() => router.push('/group')}
+              onClick={() => router.replace('/group')}
             />
             <MessageOutlined
               style={{ color: title === '메세지' ? '#3FA9FF' : null }}
-              onClick={() => router.push('/message')}
+              onClick={() => router.replace('/message')}
             />
             <EllipsisOutlined
               style={{ color: title === '마이 페이지' ? '#3FA9FF' : null }}
-              onClick={() => router.push('/myPage')}
+              onClick={() => router.replace('/myPage')}
             />
           </footer>
         </>

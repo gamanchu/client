@@ -23,7 +23,7 @@ function GroupCard({ data }) {
         bordered={false}
         bodyStyle={{ padding: '0', maxHeight: '110px' }}
         style={{ marginBottom: '25px', maxWidth: '400px', margin: 'auto' }}
-        onClick={() => router.push(`/group/${data.id}`)}
+        onClick={() => router.replace(`/group/${data.id}`)}
       >
         <Row>
           <Col span={14} style={{ padding: '10px 0 10px 10px' }}>
